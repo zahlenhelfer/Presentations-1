@@ -7,11 +7,16 @@ SET SDK=C:\Program Files\Research In Motion\BlackBerry 10 WebWorks SDK 1.0.3.8\d
 
 IF "%1" == "" GOTO MISSINGPARAMS
 IF "%2" == "" GOTO MISSINGPARAMS
+IF NOT EXIST "%JAVA_HOME%\bin\java.exe" GOTO MISSINGJAVA
+
 
 "%SDK%\blackberry-deploy.bat" -package app\device\wic.bar -device %1 -installApp -password %2
 GOTO END
 
 :MISSINGPARAMS
 ECHO Missing parameters.  Correct usage: load_win.bat [device ip] [device password]
+
+:MISSINGJAVA
+ECHO Please provide access to java.exe (PATH Variable)
 
 :END
